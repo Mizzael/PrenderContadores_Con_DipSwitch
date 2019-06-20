@@ -32,13 +32,21 @@ void main(void)
  
    while(1)
    {
-      ContadorAnilloLSB=ContadorAnilloLSB>>128;
+      ContadorAnilloLSB=ContadorAnilloLSB>1;
       if(ContadorAnilloLSB==0x80)
       {
          ContadorAnilloLSB=0x01;
       }
-      output_b(ContadorAnilloLSB);
-      delay_ms(200);
+      
+      
+      ContadorAnilloMSB=ContadorAnilloMSB>>1;
+      
+      if(ContadorAnilloMSB==0x00)
+      {
+         ContadorAnilloMSB=0X80;
+      }
+      output_c(ContadorAnilloMSB);
+      delay_ms(100);
       
       
       //Aqui usamos mascaras
