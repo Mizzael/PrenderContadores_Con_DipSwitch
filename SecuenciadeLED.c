@@ -36,7 +36,7 @@ void main(void){
    int FlagContador1=0;
    int FlagContador2=0;
    int FlagContador3=0;
- 
+ //TEST
  
 while(1){ 
    
