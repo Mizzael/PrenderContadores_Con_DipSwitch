@@ -33,35 +33,48 @@ void main(void)
   int ContadorAnilloPortD=0x03;
   
   int Opcion=input_a();
+   
+  int FlagContador1=1;
+ 
  
    while(1)
-   {
-     
-     
-      if((Opcion&0x04)==0x04||(Opcion&0x01)==0x01)
+   { 
+      if((Opcion&0x01)==0x01)
       {
+         if(FlagContador1==1){
          ContadorAnilloPortB=ContadorAnilloPortB<<1;
          if(ContadorAnilloPortB==0x80)
          {
             ContadorAnilloPortB=0x01;
          }
          output_b(ContadorAnilloPortB);   
+         }
+         else
+            FlagContador1==0;
       }
       
-      ContadorAnilloPortC=ContadorAnilloPortC>>1;
       
-      if(ContadorAnilloPortC==0x00)
+      if((Opcion&0x02)==0x02)
       {
-         ContadorAnilloPortC=0X80;
+         ContadorAnilloPortC=ContadorAnilloPortC>>1;
+      
+         if(ContadorAnilloPortC==0x00)
+         {
+            ContadorAnilloPortC=0X80;
+         }
+         output_c(ContadorAnilloPortC);
       }
-      output_c(ContadorAnilloPortC);
-      delay_ms(100);
+      
+      if((Opcion&0x04)==0x04)
+      {
+         ContadorAnilloPortD=ContadorAnilloPortD<<2;
+         if(ContadorAnilloPortD==0xC0)
+         {
+            ContadorAnilloPortD=0x03;
+         }
+         output_d(ContadorAnilloPortD);
+      }
    
-      ContadorAnilloPortD=ContadorAnilloPortD<<2;
-      if(ContadorAnilloPortD==0xC0)
-      {
-         ContadorAnilloPortD=0x03;
-      }
-      output_d(ContadorAnilloPortD);
+   delay_ms(100);
    }
-}
+ }
