@@ -23,40 +23,45 @@
 //aqui el void main(void)
 void main(void)
 {
+   set_tris_a(0x3F);
    set_tris_b(0x00);
    set_tris_c(0x00);
    set_tris_d(0x00);
    
-  int ContadorAnilloLSB=0x01;
-  int ContadorAnilloMSB=0x80;
+  int ContadorAnilloPortB=0x01;
+  int ContadorAnilloPortC=0x80;
+  int ContadorAnilloPortD=0x03;
+  
+  int Opcion=input_a();
  
    while(1)
    {
-      ContadorAnilloLSB=ContadorAnilloLSB>1;
-      if(ContadorAnilloLSB==0x80)
+     
+     
+      if((Opcion&0x04)==0x04||(Opcion&0x01)==0x01)
       {
-         ContadorAnilloLSB=0x01;
+         ContadorAnilloPortB=ContadorAnilloPortB<<1;
+         if(ContadorAnilloPortB==0x80)
+         {
+            ContadorAnilloPortB=0x01;
+         }
+         output_b(ContadorAnilloPortB);   
       }
       
+      ContadorAnilloPortC=ContadorAnilloPortC>>1;
       
-      ContadorAnilloMSB=ContadorAnilloMSB>>1;
-      
-      if(ContadorAnilloMSB==0x00)
+      if(ContadorAnilloPortC==0x00)
       {
-         ContadorAnilloMSB=0X80;
+         ContadorAnilloPortC=0X80;
       }
-      output_c(ContadorAnilloMSB);
+      output_c(ContadorAnilloPortC);
       delay_ms(100);
-      
-      
-      //Aqui usamos mascaras
-      /*if((ContadorAnilloLSB&0x20)==0x20)
+   
+      ContadorAnilloPortD=ContadorAnilloPortD<<2;
+      if(ContadorAnilloPortD==0xC0)
       {
-         output_c(ContadorAnilloLSB);
+         ContadorAnilloPortD=0x03;
       }
-      if((ContadorAnilloLSB&0x20)!=0x20)
-      {
-         output_c(0);
-      }*/
+      output_d(ContadorAnilloPortD);
    }
 }
