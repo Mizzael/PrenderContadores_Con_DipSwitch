@@ -40,6 +40,7 @@ void main(void){
  
 while(1){ 
    
+   Opcion=input_a();
     if((Opcion&0x01)==0x01){
       FlagContador1=1;
    }
