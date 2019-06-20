@@ -21,60 +21,39 @@
 //variables globales
 
 //aqui el void main(void)
-void main(void)
-{
+void main(void){
    set_tris_a(0x3F);
    set_tris_b(0x00);
    set_tris_c(0x00);
    set_tris_d(0x00);
    
-  int ContadorAnilloPortB=0x01;
-  int ContadorAnilloPortC=0x80;
-  int ContadorAnilloPortD=0x03;
+   int ContadorAnilloPortB=0x01;
+   int ContadorAnilloPortC=0x80;
+   int ContadorAnilloPortD=0x03;
   
-  int Opcion=input_a();
+   int Opcion=input_a();
    
-  int FlagContador1=1;
+   int FlagContador1=1;
  
  
-   while(1)
-   { 
-      if((Opcion&0x01)==0x01)
-      {
-         if(FlagContador1==1){
-         ContadorAnilloPortB=ContadorAnilloPortB<<1;
-         if(ContadorAnilloPortB==0x80)
-         {
-            ContadorAnilloPortB=0x01;
-         }
-         output_b(ContadorAnilloPortB);   
-         }
-         else
-            FlagContador1==0;
-      }
-      
-      
-      if((Opcion&0x02)==0x02)
-      {
-         ContadorAnilloPortC=ContadorAnilloPortC>>1;
-      
-         if(ContadorAnilloPortC==0x00)
-         {
-            ContadorAnilloPortC=0X80;
-         }
-         output_c(ContadorAnilloPortC);
-      }
-      
-      if((Opcion&0x04)==0x04)
-      {
-         ContadorAnilloPortD=ContadorAnilloPortD<<2;
-         if(ContadorAnilloPortD==0xC0)
-         {
-            ContadorAnilloPortD=0x03;
-         }
-         output_d(ContadorAnilloPortD);
-      }
-   
-   delay_ms(100);
+while(1){ 
+   ContadorAnilloPortB=ContadorAnilloPortB<<1;
+   if(ContadorAnilloPortB==0x80){
+      ContadorAnilloPortB=0x01;
    }
+   output_b(ContadorAnilloPortB);   
+        
+   ContadorAnilloPortC=ContadorAnilloPortC>>1;
+   if(ContadorAnilloPortC==0x00){
+      ContadorAnilloPortC=0X80;
+   }
+   output_c(ContadorAnilloPortC);
+     
+   ContadorAnilloPortD=ContadorAnilloPortD<<2;
+   if(ContadorAnilloPortD==0xC0){
+      ContadorAnilloPortD=0x03;
+   }
+   output_d(ContadorAnilloPortD);
+      delay_ms(100);
  }
+}
