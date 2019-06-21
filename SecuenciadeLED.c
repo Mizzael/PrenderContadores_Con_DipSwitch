@@ -30,32 +30,30 @@ void main(void){
    int ContadorAnilloPortB=0x01;
    int ContadorAnilloPortC=0x80;
    int ContadorAnilloPortD=0x03;
-  
-   int Opcion=input_a();
    
    int FlagContador1=0;
    int FlagContador2=0;
    int FlagContador3=0;
- //TEST
- 
-while(1){ 
+
+while(1){
    
-   Opcion=input_a();
-    if((Opcion&0x01)==0x01){
+   int Opcion=input_a();
+   
+    if((Opcion&0x09)>0x00){
       FlagContador1=1;
    }
    else{
       FlagContador1=0;
    }
    
-   if((Opcion&0x02)==0x02){
+   if((Opcion&0x12)>0x00){
       FlagContador2=1;
    }
    else{
       FlagContador2=0;
    }
    
-   if((Opcion&0x04)==0x04){
+   if((Opcion&0x24)>0x00){
       FlagContador3=1;
    }
    else{
